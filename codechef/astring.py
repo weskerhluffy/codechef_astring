@@ -3,7 +3,7 @@ Created on 20 ago 2019
 
 @author: ernestoalvarado
 '''
-# XXX: https://www.codechef.com/LTIME36/problems/ASTRING
+#  XXX: https://www.codechef.com/LTIME36/problems/ASTRING
 # XXX: https://stackoverflow.com/questions/35714003/smallest-lexicographic-subsequence-of-size-k-in-an-array
 
 import sys
@@ -16,7 +16,7 @@ class RMQ:
 
     def __init__(self, n):
         self.sz = 1
-        self.inf = sys.maxsize
+        self.inf = chr(ord("z") + 1)
         while self.sz <= n:
             self.sz <<= 1
         self.dat = [self.inf] * (2 * self.sz - 1)
@@ -41,7 +41,6 @@ class RMQ:
 
 
 def core(s, k):
-    s = list(map(ord, s))
     s_len = len(s)
     rmq = reduce(lambda a, item:(a.update(item[0], item[1]) or a), enumerate(s), RMQ(s_len))
 
@@ -56,7 +55,7 @@ def core(s, k):
         j = min(j + 1, s_len - 1)
         k -= 1
         r.append(c)
-    return "".join(map(chr, r))
+    return "".join(r)
 
 
 if __name__ == '__main__':
